@@ -1,7 +1,7 @@
 {
   "repo": "paper-proofread",
   "category": "원고 교정",
-  "color": "#486EA8",
+  "color": "#0071BC",
   "kind": "proof",
   "hook": [
     "마지막 문장까지,",
@@ -49,5 +49,6 @@
     "SKILL.md",
     "references/rules_ko.md"
   ],
-  "source_commit": "4a35c71975ba09a01f1c8ccd554353be0f72d3b8"
+  "source_commit": "4a35c71975ba09a01f1c8ccd554353be0f72d3b8",
+  "brand": "정책한걸음"
 }
