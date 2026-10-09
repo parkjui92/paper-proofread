@@ -8,14 +8,22 @@
 
 A [Claude Code](https://claude.com/claude-code) skill that proofreads Korean academic manuscripts (`.docx` · `.pdf` · `.md` · `.hwp`) for you.
 
-Hand it a draft and it **reads through about 2,000 characters at a time, in order.** Skimming a long manuscript in one pass makes the checking thin out toward the end — you hold on to every sentence in the introduction, your eyes slide by the conclusion, and you no longer remember which spelling you picked twenty pages back. Taken piece by piece, the last page gets the same attention as the first.
+Hand it a draft and it **checks about 2,000 characters at a time, in order, at paragraph boundaries.** It records edits as it goes, then brings them together with terminology checks. Each suggestion includes its location, original wording, proposed change, and reason so the author can decide what to accept.
+
+## 30-second introduction (Korean)
+
+[![Chunk-by-chunk proofreading with an original phrase, proposed edit, location, and reason](docs/media/intro-preview.gif)](docs/media/intro.mp4)
+
+[Watch the video](docs/media/intro.mp4) · [Static image](docs/media/intro-poster.png) · [Transcript and sources (Korean)](docs/media/README.md) · [Logo-derived design system (Korean)](DESIGN.md)
+
+This silent motion graphic illustrates the documented rules; it is not a recording of an actual run. After installation, try the [fictional practice manuscript](examples/intro-manuscript.md). Choose a review scope and strictness, inspect the correction table, and decide which edits to accept. Checking whether cited works exist is optional and off by default.
 
 ## What it looks at
 
 Four things.
 
 - **Spelling and spacing** — misspellings, where words join and where they break, loanword transliteration, numbers and units. Where two spellings are both correct (시도해 보다 / 시도해보다), the question isn't which one is right but whether your manuscript picks one and stays with it
-- **Awkward sentences** — the part that needs a Korean-specific tool. English proofreading software has no category for any of these, because they aren't problems in English, and Korean spell checkers stop one layer below them:
+- **Awkward sentences** — rules focus on recurring issues in Korean academic writing:
   - *Double passives* — 분석되어지고. 되다 already makes the verb passive, then -어지다 makes it passive a second time. It breaks the rule, but it's so ordinary in academic Korean that it reads as normal
   - *Translationese* — 연구에 있어서 ("in regard to the study"), ~로 사료된다 ("it is deemed that"). Nothing is grammatically wrong, so a spell checker waves it through. The sentence just runs longer and the claim gets fuzzier
   - *Subject–predicate drift* — Korean puts the verb at the end and lets you stack modifying clauses in front of it. Stack enough and the subject stops agreeing with its verb — and the author, who knows what the sentence was meant to say, is the last person to see it
@@ -77,7 +85,7 @@ You don't only get the table. A **corrected manuscript** with the changes applie
 ## Good to know
 
 - Works on Claude Code (your own machine) and on claude.ai. If a program needed to read `.docx` · `.pdf` · `.hwp` isn't there, it falls back to another way on its own and tells you which one it used.
-- **Your manuscript doesn't leave your machine.** The only step that touches the internet is the existence check, if you turn it on, and even then all it looks up is bibliographic data — title, author, DOI.
+- **Bibliographic lookup and AI processing are different.** The skill instructs reference lookups to use only titles, authors, and DOIs. Proofreading itself runs through your chosen AI service; this skill does not guarantee local-only processing or prevent the service from receiving manuscript content.
 - **It misses things, and it flags things that were fine.** The correction table isn't a set of decisions, it's a list asking you to take a look. Results marked "unverified" by the existence check (Korean journals without DOIs, papers behind a paywall) don't mean something is wrong either — they mean a person needs to check.
 - **It doesn't touch your content.** It works on wording and format only. Whether the argument holds and the methodology is sound belongs to the review stages in [socsci-paper-kit](https://github.com/parkjui92/socsci-paper-kit) — and that kit **calls this skill** when its finalizer polishes a draft.
 - Further reading — [SKILL.md](SKILL.md) (the instructions the skill actually follows) · [references/rules_ko.md](references/rules_ko.md) (14 translationese patterns and the rest of the Korean rules) · [CHANGELOG.md](CHANGELOG.md) (what changed in each version)
