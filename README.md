@@ -14,8 +14,6 @@
 
 [![원고를 조각별로 점검하고 분석되어지고를 분석되고로 고치며 위치와 사유를 기록하는 흐름](docs/media/intro-preview.gif)](docs/media/intro.mp4)
 
-[30초 영상 보기](docs/media/intro.mp4) · [정지 이미지](docs/media/intro-poster.png) · [영상 내용과 근거](docs/media/README.md) · [로고 기반 디자인 기준](DESIGN.md)
-
 *소리 없이 볼 수 있는 한국어 모션그래픽입니다. 공개 교정 규칙을 바탕으로 구성한 사용 예시이며 실제 실행 화면의 녹화는 아닙니다.*
 
 ## 이런 업무에 이렇게 씁니다
