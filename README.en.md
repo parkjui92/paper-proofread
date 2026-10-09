@@ -14,8 +14,6 @@ Hand it a draft and it **checks about 2,000 characters at a time, in order, at p
 
 [![Chunk-by-chunk proofreading with an original phrase, proposed edit, location, and reason](docs/media/intro-preview.gif)](docs/media/intro.mp4)
 
-[Watch the video](docs/media/intro.mp4) · [Static image](docs/media/intro-poster.png) · [Transcript and sources (Korean)](docs/media/README.md) · [Logo-derived design system (Korean)](DESIGN.md)
-
 This silent motion graphic illustrates the documented rules; it is not a recording of an actual run. After installation, try the [fictional practice manuscript](examples/intro-manuscript.md). Choose a review scope and strictness, inspect the correction table, and decide which edits to accept. Checking whether cited works exist is optional and off by default.
 
 ## What it looks at
