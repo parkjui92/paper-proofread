@@ -39,7 +39,7 @@ README에서 덜어낸 배경과 사용 시나리오를 여기 둡니다.
 |---|---|---|
 | **표기 교정** | 맞춤법, 띄어쓰기, 외래어 표기, 문장부호, 숫자·단위 통일, 약어 첫 등장 시 풀어쓰기 | 데이타 → 데이터 · 갯수 → 개수 · 할수있다 → 할 수 있다 |
 | **문장 교열** | 주술 호응, 조사 오용, 이중피동, 번역투, 문장 길이, 중복 표현, 피동태 연속, 접속사 과다 | 분석되어지고 → 분석되고 · ~에 있어서 → ~에서 |
-| **논리·구조** | 문단의 주장→근거→정리 구조, 청크 간 전환의 자연스러움, 용어 일관성, 표·그림 번호 순서와 본문 참조 여부 | 앞 절 '기술이전' ↔ 뒤 절 '기술 이전' |
+| **논리·구조** | 문단의 주장→근거→정리 구조, 청크(chunk)[^chunk] 간 전환의 자연스러움, 용어 일관성, 표·그림 번호 순서와 본문 참조 여부 | 앞 절 '기술이전' ↔ 뒤 절 '기술 이전' |
 | **인용·참고문헌** | 본문 인용 ↔ 목록 대조, 서지정보 완결성, 인용 형식 일관성, 정렬 순서, 연도 일치 | 본문 (김철수, 2021)이 목록에 없음 |
 | **서지 실재 검증** (선택) | DOI·URL 실제 조회, 식별자 형식 검사, 조회된 메타데이터와 제목·저자·연도 대조 | DOI 조회 실패 → 🔴 환각 출처 의심 |
 
@@ -391,3 +391,5 @@ Whichever path was used is reported with the results.
 > ⚠️ **Caveat on `.hwp` input.** The LibreOffice fallback can flatten tables and figures into plain text. Prefer the kordoc path for table-heavy manuscripts; if tables appear to have vanished from the extraction, the results will say so explicitly ("original comparison required").
 
 Manuscript text is never sent anywhere. The only step that uses the network is reference-existence verification, and only if you turn it on — and even then, the only thing queried is bibliographic data (title, authors, DOI).
+
+[^chunk]: 청크(chunk): 긴 원고를 한 번에 점검하지 않고 약 2,000자(`chunk_size`)씩 문단 경계에서 나눈 조각. 조각마다 차례로 점검해야 긴 원고에서도 세밀한 오류를 놓치지 않는다.

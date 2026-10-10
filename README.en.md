@@ -1,12 +1,12 @@
 # paper-proofread
 
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-purple.svg)
 
 [한국어](README.md) · **English**
 
-A [Claude Code](https://claude.com/claude-code) skill that proofreads Korean academic manuscripts (`.docx` · `.pdf` · `.md` · `.hwp`) for you.
+A [Claude Code](https://claude.com/claude-code) skill that proofreads Korean academic manuscripts (`.docx` · `.pdf` · `.md` · `.hwp` · `.hwpx`) for you.
 
 Hand it a draft and it **checks about 2,000 characters at a time, in order, at paragraph boundaries.** It records edits as it goes, then brings them together with terminology checks. Each suggestion includes its location, original wording, proposed change, and reason so the author can decide what to accept.
 
@@ -14,7 +14,7 @@ Hand it a draft and it **checks about 2,000 characters at a time, in order, at p
 
 [![Chunk-by-chunk proofreading with an original phrase, proposed edit, location, and reason](docs/media/intro-preview.gif)](docs/media/intro.mp4)
 
-This silent motion graphic illustrates the documented rules; it is not a recording of an actual run. After installation, try the [fictional practice manuscript](examples/intro-manuscript.md). Choose a review scope and strictness, inspect the correction table, and decide which edits to accept. Checking whether cited works exist is optional and off by default.
+This silent motion graphic illustrates the documented rules; it is not a recording of an actual run. After installation, try the [fictional practice manuscript](examples/intro-manuscript.md). Choose a review scope and strictness, inspect the correction table, and decide which edits to accept. Checking whether cited works actually exist is a key feature; it needs an internet connection, so it is off by default and you switch it on by asking.
 
 ## What it looks at
 
@@ -28,7 +28,9 @@ Four things.
 - **Logic and terminology** — whether paragraphs hold together, whether one term stays one term across a long draft (기술이전 in chapter 2, 기술 이전 in chapter 5), whether table numbers match what the body refers to
 - **Citations and references** — every in-text citation accounted for in the list, and nothing sitting in the list that the body never cites
 
-There's **one more you can switch on**: checking that the works you cite actually exist. It opens each DOI and link for real and compares what comes back against your reference list. **If AI helped with the draft or the literature, please turn this on** — AI invents plausible papers that were never written, and the author name reads naturally, so does the journal, and the bibliographic formatting is often *tidier* than what a person types by hand. That's exactly why your eye slides past it.
+### Checking that cited works actually exist
+
+This is a key feature. It needs an internet connection, so it is off by default — just ask for it. It opens each DOI and link for real and compares what comes back against your reference list. **If AI helped with the draft or the literature, please turn this on** — AI invents plausible papers that were never written, and the author name reads naturally, so does the journal, and the bibliographic formatting is often *tidier* than what a person types by hand. That's exactly why your eye slides past it.
 
 ## Install
 
@@ -62,7 +64,8 @@ You can set the options below by hand, but asking in words like the above sets t
 | `strictness` | moderate | How picky to be — `conservative` (🔴 only) / `moderate` (🔴🟡) / `aggressive` (🔴🟡🔵) |
 | `focus` | full | What to look at — `full` / `surface` (spelling) / `sentence` / `reference` (citations) |
 | `verify_references` | off | On means it checks whether the cited works really exist (needs internet) |
-| `chunk_size` · `citation_style` | 2000 chars · APA 7th | How much to read at a time (cut so paragraphs stay whole) · citation format |
+| `chunk_size` | 2000 chars | Chunk size — how much to read at a time (cut so paragraphs stay whole) |
+| `citation_style` | APA 7th | Citation format |
 
 ## What you get back
 
@@ -83,6 +86,7 @@ You don't only get the table. A **corrected manuscript** with the changes applie
 ## Good to know
 
 - Works on Claude Code (your own machine) and on claude.ai. If a program needed to read `.docx` · `.pdf` · `.hwp` isn't there, it falls back to another way on its own and tells you which one it used.
+- **Hangul (`.hwpx`) manuscripts are corrected in place.** You get a review copy with edits marked in blue and a clean final copy; tables, figures, and formatting stay intact. The tool (`scripts/hwpx_revise.py`) ships with the skill and needs Python 3. Without Python, you get a revised manuscript (.md) and the correction table instead.
 - **Bibliographic lookup and AI processing are different.** The skill instructs reference lookups to use only titles, authors, and DOIs. Proofreading itself runs through your chosen AI service; this skill does not guarantee local-only processing or prevent the service from receiving manuscript content.
 - **It misses things, and it flags things that were fine.** The correction table isn't a set of decisions, it's a list asking you to take a look. Results marked "unverified" by the existence check (Korean journals without DOIs, papers behind a paywall) don't mean something is wrong either — they mean a person needs to check.
 - **It doesn't touch your content.** It works on wording and format only. Whether the argument holds and the methodology is sound belongs to the review stages in [socsci-paper-kit](https://github.com/parkjui92/socsci-paper-kit) — and that kit **calls this skill** when its finalizer polishes a draft.
