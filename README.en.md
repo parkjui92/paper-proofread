@@ -14,7 +14,13 @@ Hand it a draft and it **checks about 2,000 characters at a time, in order, at p
 
 [![Chunk-by-chunk proofreading with an original phrase, proposed edit, location, and reason](docs/media/intro-preview.gif)](docs/media/intro.mp4)
 
-This silent motion graphic illustrates the documented rules; it is not a recording of an actual run. After installation, try the [fictional practice manuscript](examples/intro-manuscript.md). Choose a review scope and strictness, inspect the correction table, and decide which edits to accept. Checking whether cited works actually exist is a key feature; it needs an internet connection, so it is off by default and you switch it on by asking.
+This video reconstructs a Claude Code conversation and corrections based on the published rules; it is not a live session recording. After installation, try the [fictional practice manuscript](examples/intro-manuscript.md). Choose a review scope and strictness, inspect the correction table, and decide which edits to accept. Checking whether cited works actually exist is a key feature; it needs an internet connection, so it is off by default and you switch it on by asking.
+
+## A concrete workflow
+
+Ask Claude Code to check sections 1–2 of `examples/intro-manuscript.md`, including wording and inconsistent terminology, and to leave a table explaining each edit. Keep reference verification off for this small practice example.
+
+An example suggestion is `분석되어지고` → `분석되고`, identified by section and paragraph with the reason “double passive.” A separate suggestion can align `기술 이전` with the manuscript’s first spelling, `기술이전`. You receive corrected text, a correction table, and a summary of recurring issues; the author decides which suggestions to accept.
 
 ## What it looks at
 
@@ -82,11 +88,11 @@ Everything worth changing comes back as a table like this.
 
 | # | Location | Sev. | Type | Original | Suggested | Reason |
 |---|------|--------|------|------|--------|------|
-| 1 | §2.1/C3 | 🔴 | Double passive | 분석되어지고 | 분석되고 | Passive marked twice |
-| 2 | §3.2/C5 | 🟡 | Translationese | ~에 있어서 | ~에서 | Reads like a direct translation from English |
+| 1 | §2.1 paragraph 3 | 🔴 | Double passive | 분석되어지고 | 분석되고 | Passive marked twice |
+| 2 | §3.2 paragraph 5 | 🟡 | Translationese | ~에 있어서 | ~에서 | Reads like a direct translation from English |
 | 3 | References | 🔴 | Possibly not real | (list item 12) | — | DOI doesn't open, and that volume has no such paper |
 
-There are three severity levels. 🔴 means **you have to fix it**, 🟡 means **better if you do**, 🔵 is **a matter of taste**. The location column reads `§2.1/C3` — section 2.1, third piece — so you can go straight to the spot in your own file.
+There are three severity levels. 🔴 means **you have to fix it**, 🟡 means **better if you do**, 🔵 is **a matter of taste**. The location column reads `§2.1 paragraph 3` — section 2.1, third paragraph — so you can go straight to the spot in your own file.
 
 You don't only get the table. A **corrected manuscript** with the changes applied comes with it, plus a **summary report** of which mistakes kept recurring and which terms drifted apart across the draft. That "recurring patterns" part is worth a look — it doesn't just fix this manuscript, it changes the next one.
 

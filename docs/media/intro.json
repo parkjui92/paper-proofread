@@ -1,54 +1,208 @@
 {
-  "repo": "paper-proofread",
-  "category": "원고 교정",
-  "color": "#0071BC",
-  "kind": "proof",
-  "hook": [
-    "마지막 문장까지,",
-    "차례로 살펴봅니다."
-  ],
-  "tagline": "한국어 원고의 문장·표기·인용 점검",
-  "scenario": "논문 투고나 보고서 제출 전에 긴 원고의 표현과 표기를 정리할 때",
-  "inputs": [
-    "교정할 한국어 원고",
-    "점검 범위·수정 강도"
-  ],
-  "prompt": "이 논문을 투고 전에 교정해줘.\n공저자 원고라 보수적으로 보고,\n수정 이유도 표로 남겨줘.",
-  "steps": [
-    "원고 분할",
-    "조각별 점검",
-    "용어 통합",
-    "수정안 정리"
-  ],
-  "result": "수정 원고 + 교정교열표 + 요약",
-  "feature_title": "수정 위치와 이유가 함께 남습니다",
-  "features": [
-    [
-      "약 2,000자씩",
-      "문단 경계를 지켜 순차 점검"
-    ],
-    [
-      "한국어 표현 점검",
-      "이중피동·번역투·용어 혼용 확인"
-    ],
-    [
-      "판단 가능한 수정안",
-      "위치·심각도·원문·사유를 표로"
-    ]
-  ],
-  "note": "서지 실재 확인은 선택 기능입니다. 교정 제안은 저자가 최종 판단합니다.",
-  "output": [
-    "원문  분석되어지고",
-    "수정  분석되고",
-    "사유  이중피동 / 위치 기록"
-  ],
-  "cta": "범위와 수정 강도를 말로 지정하세요",
-  "start": "첨부 원고를 보수적으로 교정해줘. 원문·수정안·사유를 함께 보여줘.",
-  "start_short": "원고 → 수정안 + 이유 + 위치",
+  "category": "한국어 논문·보고서 교정",
+  "provenance": "Claude Code 사용 흐름 재구성 · 가상 원고",
   "sources": [
     "SKILL.md",
-    "references/rules_ko.md"
+    "references/rules_ko.md",
+    "examples/intro-manuscript.md"
   ],
-  "source_commit": "4a35c71975ba09a01f1c8ccd554353be0f72d3b8",
-  "brand": "정책한걸음"
+  "scenes": [
+    {
+      "title": "원고와 함께, 고칠 범위를 말로 지정합니다",
+      "caption": "맞춤법만, 문장까지, 보수적으로 — 요청으로 범위를 정합니다.",
+      "panels": [
+        {
+          "title": "Claude Code · paper-proofread 설치 후",
+          "kind": "terminal",
+          "lines": [
+            {
+              "text": "> @examples/intro-manuscript.md의 본문 1~2절을 교정해줘.",
+              "style": "command"
+            },
+            {
+              "text": "  문장 표현과 용어 혼용도 보고, 수정 이유를 표로 남겨줘.",
+              "style": "command"
+            },
+            {
+              "text": "  서지 실재 확인은 꺼줘.",
+              "style": "command"
+            },
+            {
+              "text": "",
+              "style": "text"
+            },
+            {
+              "text": "● 원문·수정안·위치·사유를 함께 정리하겠습니다.",
+              "style": "accent"
+            },
+            {
+              "text": "  긴 원고는 약 2,000자씩, 문단 경계에서 나누어 봅니다.",
+              "style": "text"
+            },
+            {
+              "text": "  제안 강도: moderate  /  서지 실재 확인: off",
+              "style": "text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "어색한 표현을 원문과 나란히 확인합니다",
+      "caption": "문장 표현을 다듬고, 원문에 없는 연구 결과를 덧붙이지 않습니다.",
+      "panels": [
+        {
+          "title": "intro-manuscript.md · 1. 연구 목적",
+          "kind": "file",
+          "lines": [
+            {
+              "text": "원문",
+              "style": "heading"
+            },
+            {
+              "text": "본 연구에 있어서 기술이전 지원사업의",
+              "style": "text"
+            },
+            {
+              "text": "이용 경험을 살펴본다.",
+              "style": "text"
+            },
+            {
+              "text": "",
+              "style": "text"
+            },
+            {
+              "text": "기관의 안내 자료와 참여자의 의견이",
+              "style": "text"
+            },
+            {
+              "text": "함께 분석되어지고 있다.",
+              "style": "highlight"
+            }
+          ]
+        },
+        {
+          "title": "수정 원고.md · 예시",
+          "kind": "file",
+          "lines": [
+            {
+              "text": "수정안",
+              "style": "heading"
+            },
+            {
+              "text": "본 연구에서는 기술이전 지원사업의",
+              "style": "accent"
+            },
+            {
+              "text": "이용 경험을 살펴본다.",
+              "style": "text"
+            },
+            {
+              "text": "",
+              "style": "text"
+            },
+            {
+              "text": "기관의 안내 자료와 참여자의 의견이",
+              "style": "text"
+            },
+            {
+              "text": "함께 분석되고 있다.",
+              "style": "accent"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "어디를 왜 고쳤는지, 표로 남깁니다",
+      "caption": "섹션명·문단 번호로 원고에서 해당 위치를 바로 찾습니다.",
+      "panels": [
+        {
+          "title": "교정교열표.md · 출력 형식 예시",
+          "kind": "table",
+          "lines": []
+        }
+      ],
+      "table": {
+        "headers": [
+          "위치",
+          "유형 / 강도",
+          "원문 → 수정안",
+          "사유"
+        ],
+        "rows": [
+          [
+            "§1 · 1문단",
+            "이중피동 / 필수",
+            "분석되어지고 → 분석되고",
+            "피동 표현 중복"
+          ],
+          [
+            "§1 · 1문단",
+            "번역투 / 권고",
+            "본 연구에 있어서 → 본 연구에서는",
+            "늘여 쓴 조사 정리"
+          ],
+          [
+            "§2 · 1문단",
+            "용어 통일 / 권고",
+            "기술 이전 → 기술이전",
+            "본문 첫 표기와 통일"
+          ]
+        ]
+      },
+      "footnote": "필수 수정과 권고를 구분해, 저자가 채택 여부를 판단합니다."
+    },
+    {
+      "title": "수정 원고·교정표·요약을 함께 받습니다",
+      "caption": "수정한 문장을 읽고, 교정표에서 바뀐 이유를 확인합니다.",
+      "panels": [
+        {
+          "title": "Claude Code · 결과 안내 예시",
+          "kind": "terminal",
+          "lines": [
+            {
+              "text": "● 수정 원고     표현과 표기를 반영한 본문",
+              "style": "accent"
+            },
+            {
+              "text": "● 교정교열표   위치·원문·수정안·사유",
+              "style": "accent"
+            },
+            {
+              "text": "● 요약 리포트  반복 오류·용어 혼용 정리",
+              "style": "accent"
+            },
+            {
+              "text": "",
+              "style": "text"
+            },
+            {
+              "text": "참고문헌의 실재 확인도 필요하다면:",
+              "style": "text"
+            },
+            {
+              "text": "> 참고문헌이 실제로 있는지도 확인해줘.",
+              "style": "command"
+            },
+            {
+              "text": "  DOI·링크 조회에는 인터넷 연결이 필요합니다.",
+              "style": "muted"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "repo": "paper-proofread",
+  "seconds": 30,
+  "scene_times": [
+    0,
+    7,
+    14,
+    23,
+    30
+  ],
+  "brand": "정책한걸음",
+  "source_commit": "e15199dce1c538b8b736071432918c04e21d316c"
 }
