@@ -15,7 +15,7 @@ README에서 덜어낸 배경과 사용 시나리오를 여기 둡니다.
 - **이중피동** — "분석되어지고 있다". '되다'로 이미 피동인데 '-어지다'를 한 번 더 붙였습니다. 규범 위반인데도 학술 문장에 워낙 흔해서, 읽으면서 걸리지 않습니다.
 - **번역투** — "연구에 있어서", "~하는 것이 가능하다", "~로 사료된다", "~가 행해졌다". 문법적으로 틀린 데가 없으니 맞춤법 검사기는 그냥 통과시킵니다. 다만 문장이 길어지고 주장이 흐려집니다.
 - **주술 불일치** — 한국어는 서술어가 맨 뒤에 오고, 그 앞에 수식절을 얼마든지 쌓을 수 있습니다. 명사구를 겹겹이 얹다 보면 주어와 서술어가 멀어져 호응이 깨지는데, 무슨 말을 하려 했는지 아는 저자 본인이 가장 못 봅니다.
-- **띄어쓰기의 회색지대** — "시도해 보다"와 "시도해보다"는 둘 다 맞습니다. 여기서 정답은 둘 중 하나가 아니라 "원고 안에서 하나로 통일되어 있는가"입니다. 한쪽을 틀렸다고 표시하는 검사기는 도움이 안 됩니다.
+- **띄어쓰기의 회색지대** — "읽어 보다"와 "읽어보다"는 둘 다 맞습니다. 여기서 정답은 둘 중 하나가 아니라 "원고 안에서 하나로 통일되어 있는가"입니다. 한쪽을 틀렸다고 표시하는 검사기는 도움이 안 됩니다.
 
 영어권 교정 도구는 이 유형들을 개념 자체로 갖고 있지 않습니다. 자기 언어에 없는 범주이기 때문입니다. 국내 맞춤법 검사기는 표기 층위를 잘 잡지만, 그 위층 — 문장 문법, 문단 논리, 긴 원고에서 갈라지는 용어, 본문 인용과 참고문헌 목록의 정합 — 은 보지 않습니다. 결국 남는 건 사람이 처음부터 끝까지 다시 읽는 방법뿐입니다.
 
@@ -130,7 +130,7 @@ README에서 덜어낸 배경과 사용 시나리오를 여기 둡니다.
 | 🟡 **suggest** | 고치면 읽기 좋아지지만 틀린 건 아닌 것 | **골라 씁니다.** 번역투는 대체로 고치는 편이 낫지만, 해당 분야에서 굳어진 표현이거나 원저자 문체상 유지할 이유가 있으면 남깁니다 |
 | 🔵 **style** | 취향 차이 | **유형 단위로 처리합니다.** 하나씩 판단하지 말고 "60자 넘는 문장 분리만 반영해줘"처럼 유형을 골라 일괄 적용하는 편이 빠릅니다 |
 
-한 가지 짚어둘 원칙이 있습니다. 둘 다 맞는 표기(예: "시도해 보다 / 시도해보다")는 원고 안에서 통일되어 있으면 **수정 대상이 아닙니다.** 혼용된 경우에만 다수 용례 쪽으로 통일을 권고합니다. 표기 취향을 바꾸는 도구가 아니라, 원고를 일관되게 만드는 도구입니다.
+한 가지 짚어둘 원칙이 있습니다. 둘 다 맞는 표기(예: "읽어 보다 / 읽어보다")는 원고 안에서 통일되어 있으면 **수정 대상이 아닙니다.** 혼용된 경우에만 다수 용례 쪽으로 통일을 권고합니다. 표기 취향을 바꾸는 도구가 아니라, 원고를 일관되게 만드는 도구입니다.
 
 학술적 내용과 주장 자체도 건드리지 않습니다. 표현과 형식만 다듬습니다.
 
@@ -215,7 +215,7 @@ Korean academic prose has failure modes of its own. Four that show up constantly
 Korean is verb-final and lets you stack modifying clauses in front of the predicate without any structural limit. Subjects can also be dropped freely. Put those two together and a subject can end up far enough from its verb that agreement quietly breaks — and the author, who knows what the sentence was supposed to mean, is the last person who will notice.
 
 **4. 띄어쓰기 — the spacing gray zone.**
-Korean spacing has cases where two spellings are *both* standard. "시도해 보다" and "시도해보다" ("to try doing") are both correct. So the right answer isn't one of them — it's *whichever one you already used elsewhere in this manuscript*. A checker that flags one as wrong is worse than no checker at all. What you actually need is consistency detection across the whole document.
+Korean spacing has cases where two spellings are *both* standard. "읽어 보다" and "읽어보다" ("to try reading") are both correct. So the right answer isn't one of them — it's *whichever one you already used elsewhere in this manuscript*. A checker that flags one as wrong is worse than no checker at all. What you actually need is consistency detection across the whole document.
 
 English-language proofreading tools don't model any of this. Not because they're weak, but because these categories don't exist in the language they were built for. Korean spell checkers do exist and handle the orthography layer well. What neither covers is the layer above it: sentence grammar, paragraph logic, terminology that drifts across a long document, and whether the citations in the body actually match the reference list. Which leaves reading the whole thing again, by hand.
 
@@ -334,7 +334,7 @@ Not restricted to academic papers. Reports and proposals work too. The citation 
 | 🟡 **suggest** | Better if changed, but not incorrect as written | **Pick and choose.** Translationese is usually worth fixing, but keep it where a phrase is entrenched in your field or the author's voice depends on it |
 | 🔵 **style** | Preference | **Handle by type, not item.** Rather than adjudicating each one, select a category: "just apply the sentence splits for anything over 60 characters" |
 
-One principle worth stating outright: where two spellings are both correct (that "시도해 보다 / 시도해보다" case), a manuscript that is already internally consistent **is not flagged.** A recommendation is issued only when the two are mixed, and it points toward whichever form you used more. This is a tool for making a manuscript consistent, not for imposing a spelling preference.
+One principle worth stating outright: where two spellings are both correct (that "읽어 보다 / 읽어보다" case), a manuscript that is already internally consistent **is not flagged.** A recommendation is issued only when the two are mixed, and it points toward whichever form you used more. This is a tool for making a manuscript consistent, not for imposing a spelling preference.
 
 It also leaves scholarly content and claims alone. Expression and formatting only.
 

@@ -1,6 +1,6 @@
 # paper-proofread
 
-[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.2.1-blue.svg)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-purple.svg)
 
@@ -20,13 +20,22 @@ This silent motion graphic illustrates the documented rules; it is not a recordi
 
 Four things.
 
-- **Spelling and spacing** — misspellings, where words join and where they break, loanword transliteration, numbers and units. Where two spellings are both correct (시도해 보다 / 시도해보다), the question isn't which one is right but whether your manuscript picks one and stays with it
+- **Spelling and spacing** — misspellings, where words join and where they break, loanword transliteration, numbers and units. Where two spellings are both correct (읽어 보다 / 읽어보다), the question isn't which one is right but whether your manuscript picks one and stays with it
 - **Awkward sentences** — rules focus on recurring issues in Korean academic writing:
   - *Double passives* — 분석되어지고. 되다 already makes the verb passive, then -어지다 makes it passive a second time. It breaks the rule, but it's so ordinary in academic Korean that it reads as normal
   - *Translationese* — 연구에 있어서 ("in regard to the study"), ~로 사료된다 ("it is deemed that"). Nothing is grammatically wrong, so a spell checker waves it through. The sentence just runs longer and the claim gets fuzzier
   - *Subject–predicate drift* — Korean puts the verb at the end and lets you stack modifying clauses in front of it. Stack enough and the subject stops agreeing with its verb — and the author, who knows what the sentence was meant to say, is the last person to see it
 - **Logic and terminology** — whether paragraphs hold together, whether one term stays one term across a long draft (기술이전 in chapter 2, 기술 이전 in chapter 5), whether table numbers match what the body refers to
 - **Citations and references** — every in-text citation accounted for in the list, and nothing sitting in the list that the body never cites
+
+### How translationese is handled
+
+This is where the skill differs most from a spell checker. Translationese is grammatical, so a checker passes it, but the sentence runs longer and the claim gets fuzzier.
+
+- **What counts.** Expressions that carry English or Japanese sentence structure into Korean — the [rules file](references/rules_ko.md) lists 14 types, e.g. 분석하는 것이 가능하다 → 분석할 수 있다 ("it is possible to"), 연구진에 의해 개발되었다 → 연구진이 개발했다 (English passive), 조사가 행해졌다 → 조사가 이루어졌다 (Japanese-style).
+- **How it finds them.** Not by literal string matching: the same structure is flagged even when the ending or particle differs. Context-dependent cases have their criterion written in the rules file (e.g. ~를 통하여 becomes ~(으)로 for a means, ~을 거쳐 for a process, and is left alone when it naturally means a channel).
+- **Why mostly 🟡.** Translationese breaks no rule; fixing it just reads better. Field-standard phrasing and deliberate authorial style are left alone. When it stacks with a double passive (~것으로 보여진다), it is 🔴.
+- **Limits.** The rules cover endings, particles, and stock phrases. Sentence-level translationese — inanimate subjects ("this indicator misses long-term effects"), literal English metaphors ("through two lenses"), "nobody has …" constructions — is not in the rules yet and is not guaranteed to be caught. Adding it is under discussion in [#11](https://github.com/parkjui92/paper-proofread/issues/11).
 
 ### Checking that cited works actually exist
 
