@@ -128,7 +128,7 @@ README에서 덜어낸 배경과 사용 시나리오를 여기 둡니다.
 |---|---|---|
 | 🔴 **error** | 규범 위반·인용 불일치. 판단의 여지가 없는 것 | **전부 반영합니다.** 만약 반영하면 안 될 것 같은 항목이 있다면 대개 스킬이 문맥을 잘못 읽은 경우이니, 그 자리를 짚어 되물으면 됩니다 |
 | 🟡 **suggest** | 고치면 읽기 좋아지지만 틀린 건 아닌 것 | **골라 씁니다.** 번역투는 대체로 고치는 편이 낫지만, 해당 분야에서 굳어진 표현이거나 원저자 문체상 유지할 이유가 있으면 남깁니다 |
-| 🔵 **style** | 취향 차이 | **유형 단위로 처리합니다.** 하나씩 판단하지 말고 "60자 넘는 문장 분리만 반영해줘"처럼 유형을 골라 일괄 적용하는 편이 빠릅니다 |
+| 🔵 **style** | 취향 차이 | **유형 단위로 검토합니다.** "긴 문장 분리안을 보여줘"처럼 골라 볼 수 있습니다. 60자 초과는 검토 신호이며 자동 분리 기준은 아닙니다. 길이만을 이유로 한 분리 제안은 `aggressive`에서 보고합니다 |
 
 한 가지 짚어둘 원칙이 있습니다. 둘 다 맞는 표기(예: "읽어 보다 / 읽어보다")는 원고 안에서 통일되어 있으면 **수정 대상이 아닙니다.** 혼용된 경우에만 다수 용례 쪽으로 통일을 권고합니다. 표기 취향을 바꾸는 도구가 아니라, 원고를 일관되게 만드는 도구입니다.
 
@@ -332,7 +332,7 @@ Not restricted to academic papers. Reports and proposals work too. The citation 
 |---|---|---|
 | 🔴 **error** | Norm violation or citation mismatch — no judgment call involved | **Apply all of them.** If one looks wrong to you, it's usually the skill misreading context — point at that spot and ask |
 | 🟡 **suggest** | Better if changed, but not incorrect as written | **Pick and choose.** Translationese is usually worth fixing, but keep it where a phrase is entrenched in your field or the author's voice depends on it |
-| 🔵 **style** | Preference | **Handle by type, not item.** Rather than adjudicating each one, select a category: "just apply the sentence splits for anything over 60 characters" |
+| 🔵 **style** | Preference | **Review by type.** For example, "show me suggested sentence splits." More than 60 characters is a review signal, not an automatic split rule. Length-only suggestions are reported in `aggressive` mode |
 
 One principle worth stating outright: where two spellings are both correct (that "읽어 보다 / 읽어보다" case), a manuscript that is already internally consistent **is not flagged.** A recommendation is issued only when the two are mixed, and it points toward whichever form you used more. This is a tool for making a manuscript consistent, not for imposing a spelling preference.
 
