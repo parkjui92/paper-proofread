@@ -1,6 +1,6 @@
 # paper-proofread
 
-[![Version](https://img.shields.io/badge/version-1.2.2-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-purple.svg)
 
@@ -81,6 +81,7 @@ You can set the options below by hand, but asking in words like the above sets t
 | `verify_references` | off | On means it checks whether the cited works really exist (needs internet) |
 | `chunk_size` | 2000 chars | Chunk size — how much to read at a time (cut so paragraphs stay whole) |
 | `citation_style` | APA 7th | Citation format |
+| `protected_terms` | Empty list | Terms whose exact spelling should be retained |
 
 ## What you get back
 
@@ -100,6 +101,7 @@ You don't only get the table. A **corrected manuscript** with the changes applie
 
 ## Good to know
 
+- **Source wording is protected.** Interview speech, direct quotations, existing survey items, and official names are identified before editing. Statistical expressions retain their variables, values, and operators. Quotation marks used for emphasis and the author's own English abstract are not automatically frozen. Uncertain passages are left for source confirmation. [Scope and validation examples](references/protected_spans.md)
 - Works on Claude Code (your own machine) and on claude.ai. If a program needed to read `.docx` · `.pdf` · `.hwp` isn't there, it falls back to another way on its own and tells you which one it used.
 - **Hangul (`.hwpx`) manuscripts are corrected in place.** You get a review copy with edits marked in blue and a clean final copy; tables, figures, and formatting stay intact. The tool (`scripts/hwpx_revise.py`) ships with the skill and needs Python 3. Without Python, you get a revised manuscript (.md) and the correction table instead.
 - **Bibliographic lookup and AI processing are different.** The skill instructs reference lookups to use only titles, authors, and DOIs. Proofreading itself runs through your chosen AI service; this skill does not guarantee local-only processing or prevent the service from receiving manuscript content.

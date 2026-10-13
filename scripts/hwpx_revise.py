@@ -33,7 +33,9 @@ import unicodedata
 import xml.etree.ElementTree as ET
 import zipfile
 
-VERSION = "1.0.0"
+from protected_spans import ProtectionError, validate_protection
+
+VERSION = "1.1.0"
 
 NS = {
     "hp": "http://www.hancom.co.kr/hwpml/2011/paragraph",
@@ -389,12 +391,20 @@ def cmd_apply(args):
     # 안전장치 ③ — 동시 편집 감지
     want = spec.get("source_hash")
     got = pkg.text_hash()
+    if "protected_spans" in spec and not want:
+        raise Abort("보호 구간 좌표를 쓰려면 extract의 source_hash가 필요하다")
     if want and want != got:
         raise Abort("원본이 추출 시점과 다르다(해시 %s ≠ %s). 한글에서 저장했다면 "
                     "extract부터 다시 하라." % (want, got))
 
     paras, _ = collect_paragraphs(pkg)
     by_pid = {p["pid"]: p for p in paras}
+
+    # 원문 보호 — 문맥으로 식별한 위치를 검사한다. allow_loss/force로 우회하지 않는다.
+    try:
+        protection = validate_protection(paras, spec)
+    except ProtectionError as exc:
+        raise Abort(str(exc)) from exc
 
     # 안전장치 ① — 전량 사전 검사. 하나라도 어긋나면 한 글자도 고치지 않는다.
     problems, grouped = [], {}
@@ -443,6 +453,19 @@ def cmd_apply(args):
     # 최종본은 저장 여부와 무관하게 항상 만든다 — 사실 동결 검사의 기준이기 때문이다
     clean_pkg, clean_minter = build("clean")
     clean_text = doc_text(clean_pkg)
+    # 실제 XML 편집 결과가 검사를 통과한 교체 지시와 같아야 한다.
+    actual, _ = collect_paragraphs(clean_pkg)
+    expected_texts = []
+    for para in paras:
+        expected = para["text"]
+        plans = [(expected.find(e["old"]), len(e["old"]), e.get("new", ""))
+                 for e in grouped.get(para["pid"], [])]
+        for start, length, new in sorted(plans, reverse=True):
+            expected = expected[:start] + new + expected[start + length:]
+        if expected.strip():
+            expected_texts.append(expected)
+    if [p["text"] for p in actual] != expected_texts:
+        raise Abort("실제 출력과 검사한 교정안이 다르다 — 아무 파일도 저장하지 않았다")
     review_pkg, review_minter = build("review")
 
     stats = {}
@@ -457,6 +480,8 @@ def cmd_apply(args):
 
     # 안전장치 ② — 불변식 (동결은 최종본 텍스트로)
     rep = verify(args.input, args.out, spec, clean_text=clean_text)
+    rep["invariants"]["원문 보호 구간"] = {
+        "ok": True, "detail": "%d구간 사전 검사 및 최종 문단 대조" % protection["protected_spans"]}
     if args.clean:
         rep["clean"] = verify(args.input, args.clean, spec, clean_text=clean_text)["invariants"]
 
@@ -532,11 +557,21 @@ def verify(src_path, out_path, spec=None, clean_text=None):
     sa, sb = doc_text(a), doc_text(b)
     sfreeze = clean_text if clean_text is not None else sb
     lost = []
-    for rx, kind in ((NUM_RX, "수치"), (QUOTE_RX, "인용·공식명칭"), (ACRO_RX, "약어")):
+    checks = [(NUM_RX, "수치"), (ACRO_RX, "약어")]
+    # 명시적 구간 검토가 있으면 강조용 따옴표까지 동결하지 않는다.
+    # 예전 교정 지시와 독립 verify 명령은 기존의 제한적인 인용 검사 유지.
+    if spec is None or "protected_spans" not in spec:
+        checks.append((QUOTE_RX, "인용·공식명칭"))
+    for rx, kind in checks:
         A = set(x.strip(" .,") for x in rx.findall(sa))
         B = set(x.strip(" .,") for x in rx.findall(sfreeze))
-        for it in sorted(A - B):
-            if len(it) >= 2:
+        # 수치와 단위 사이 공백만 달라진 것은 소실이 아니다.
+        # lost에는 원문을 남겨 기존 allow_loss와 로그 형식을 유지한다.
+        if rx is NUM_RX:
+            B = {re.sub(r"\s+", "", x) for x in B}
+        for it in sorted(A):
+            key = re.sub(r"\s+", "", it) if rx is NUM_RX else it
+            if key not in B and len(it) >= 2:
                 lost.append("[%s] %s" % (kind, it))
     # 교정안이 미리 밝힌 '의도한 소실'(edits[].allow_loss)은 위반에서 빼고 따로 보고한다
     allowed = set()

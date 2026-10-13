@@ -1,6 +1,6 @@
 # paper-proofread
 
-[![Version](https://img.shields.io/badge/version-1.2.2-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-purple.svg)
 
@@ -112,6 +112,7 @@ unzip paper-proofread.skill && rm paper-proofread.skill
 | `verify_references` | off | 켜면 인용한 논문이 실제로 있는지 확인합니다 (인터넷 연결 필요) |
 | `chunk_size` | 2000자 | 청크(chunk)[^chunk] 크기 — 몇 자씩 끊어 볼지(문단이 잘리지 않게 끊습니다) |
 | `citation_style` | APA 7th | 인용 형식 |
+| `protected_terms` | 빈 목록 | 그대로 둘 용어 — “기술이전은 붙여 쓴 표기를 유지해줘”처럼 지정 |
 
 ## 결과는 이렇게 나옵니다
 
@@ -131,6 +132,7 @@ unzip paper-proofread.skill && rm paper-proofread.skill
 
 ## 알아두실 점
 
+- **인용 원문을 보호합니다.** 면담 발화·직접 인용·기존 설문 문항·공식 명칭은 먼저 식별해 그대로 두고, 통계 표현은 변수·수치·부호를 유지합니다. 강조용 따옴표와 저자 자신의 영문 초록은 일괄 동결하지 않습니다. 불명확한 부분은 원문 확인 사항으로 남깁니다. [보호 범위와 검증 예제](references/protected_spans.md)
 - Claude Code(내 컴퓨터)와 claude.ai 둘 다 됩니다. `.docx`·`.pdf`·`.hwp`를 읽는 데 필요한 프로그램이 없으면 다른 방법으로 알아서 돌아가고, 어떤 방법을 썼는지 알려 드립니다.
 - **한글(`.hwpx`) 원고는 원본에 바로 고쳐 드립니다.** 고친 자리를 파란색으로 표시한 검토본과 표시 없는 최종본 두 벌이 나오고, 표·그림·서식은 그대로 남습니다. 반영 도구(`scripts/hwpx_revise.py`)가 스킬에 함께 들어 있으며 파이썬 3이 필요합니다. 파이썬이 없으면 수정 원고(.md)와 교정교열표로 대신 드립니다.
 - **서지 조회와 AI 서비스 처리는 구분해야 합니다.** 이 스킬은 실재 확인을 위한 검색·조회에 제목·저자·DOI 같은 서지정보만 사용하도록 지시합니다. 원고 교정 자체는 사용 중인 AI 서비스에서 이루어지므로, 로컬 전용 처리나 원고의 외부 전송 차단을 보장하는 도구는 아닙니다.
