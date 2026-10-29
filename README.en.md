@@ -6,7 +6,7 @@
 
 [한국어](README.md) · **English**
 
-A [Claude Code](https://claude.com/claude-code) skill that proofreads Korean academic manuscripts (`.docx` · `.pdf` · `.md` · `.hwp` · `.hwpx`) for you.
+A [Claude Code](https://claude.com/claude-code) skill that proofreads Korean manuscripts (papers, research proposals, reports and government documents; `.docx` · `.pdf` · `.md` · `.hwp` · `.hwpx`) for you.
 
 Hand it a draft and it **checks about 2,000 characters at a time, in order, at paragraph boundaries.** It records edits as it goes, then brings them together with terminology checks. Each suggestion includes its location, original wording, proposed change, and reason so the author can decide what to accept.
 
@@ -33,6 +33,8 @@ Four things.
   - *Subject–predicate drift* — Korean puts the verb at the end and lets you stack modifying clauses in front of it. Stack enough and the subject stops agreeing with its verb — and the author, who knows what the sentence was meant to say, is the last person to see it
 - **Logic and terminology** — whether paragraphs hold together, whether one term stays one term across a long draft (기술이전 in chapter 2, 기술 이전 in chapter 5), whether table numbers match what the body refers to
 - **Citations and references** — every in-text citation accounted for in the list, and nothing sitting in the list that the body never cites
+
+Reports and government documents get the same spelling, spacing, sentence and terminology checks. Official notation rules for Korean government documents (dates, amounts, item numbering) are not in the rules yet, so check those against your agency's style manual.
 
 ### How translationese is handled
 
